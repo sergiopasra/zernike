@@ -47,7 +47,6 @@ def eval_zernike_R(n, m, rho):
 
     comp = 1 - 2 * rho * rho
     # jacobi form
-    print n_jacobi
     return (-1)**n_jacobi * rho**m * eval_jacobi(n_jacobi, m, 0, comp)
 
 def eval_zernike(n, m, rho, phi):
