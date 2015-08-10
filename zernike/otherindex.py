@@ -2,24 +2,6 @@ import math
 
 
 
-def other_index(otheri):
-
-    x = 0.5 * (math.sqrt(8 * otheri + 1) - 1)
-    n = int(x)
-    remain = n * (n +1) // 2
-    steps = otheri - remain
-    m = -n + 2 * steps
-    return n, m
-
-# Noll index 
-
-# 0,0 1,1 1,-1, 2,0 2,-2, 2,2,  3,-1, 3,1, 3,-3, 3,3
-#  1   2   3     4   5     6     7     8    9    10o
-# impares a m < 0
-# pares a m >= 0
-# j mas peque a |m| mas peque
-
-
 #def noll_to_nm(j):
 #
 #    j1 = j-1
@@ -34,29 +16,16 @@ def other_index(otheri):
 
 def nm_to_noll(n, m):
     n1 = (n * (n +1) // 2) + 1
-    n2 = n1 + n
-    rr = n1 % 2
-    primer_par =  n1 + rr
-    primer_impar = n1 + 1 - rr
-    if n == 0:
-        j = 1
-    elif ((n + 1) % 2) == 0:
-        if m > 0:
-            j = n1 + rr + abs(m) - 1
-        else:
-            j = n1 + 1 - rr  + abs(m) - 1
-    else:
-        if rr < 1 - rr:
-            if m >= 0:
-                j = primer_par + abs(m)
-            else:
-                j = primer_impar + (abs(m)-2)
-        else:
-            if m > 0:
-                j = primer_par + (abs(m) - 2)
-            else:
-                j = primer_impar + abs(m)
-            
+    r4 = n % 4
+
+    if r4 in [0, 1]:
+        idm = m
+
+    if r4 in [2, 3]:
+        idm = -m
+
+    k = -1 if idm > 0 else 0
+    j = n1 + abs(m) + k
     return j
 
 
