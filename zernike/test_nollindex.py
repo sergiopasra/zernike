@@ -1,4 +1,6 @@
 
+from .nollindex import nm_to_noll, noll_to_nm
+
 def test_noll():
     # Noll sequence from OEIS
     # A176988
