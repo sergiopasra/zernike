@@ -1,5 +1,5 @@
 #
-from zercoeff import zernike_coeff
+from .zercoeff import zernike_coeff
 
 
 
