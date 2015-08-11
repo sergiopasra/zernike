@@ -2,16 +2,25 @@ import math
 
 
 
-#def noll_to_nm(j):
-#
-#    j1 = j-1
-#    x = 0.5 * (math.sqrt(8 * j1 + 1) - 1)
-#    n = int(x)
-#    rr = n * (n +1) // 2
-#    s1 = j1 - rr
-#
-#    m = (-1)**j * ((n % 2) + 2 *  int((s1 + ((n+1) %2)) / 2.0))
-#    return n,m
+def noll_to_nm(j):
+
+    j1 = j-1
+    x = 0.5 * (math.sqrt(8 * j1 + 1) - 1)
+    n = int(x)
+    n1 = n * (n +1) // 2
+    steps = j1 - n1
+    r4 = n % 4
+
+    sj2 = j % 2
+    sign = -2*sj2 + 1
+
+    if r4 in [2, 3]:
+        off = -sj2
+    if r4 in [0, 1]:
+        off = (sj2 + 1) % 2
+
+    m = sign * steps + off
+    return n,m
 
 
 def nm_to_noll(n, m):
@@ -40,5 +49,12 @@ def test_noll():
             j_noll = next(inoll)
             assert j == j_noll
 
+    inoll = iter(noll)
+    for n in range(15):
+        for m in range(-n, n+1, 2):
+            j_noll = next(inoll)
+            nn, mm = noll_to_nm(j_noll) 
+            assert nn == n
+            assert mm == m
 
 test_noll()
