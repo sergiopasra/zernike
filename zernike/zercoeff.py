@@ -9,6 +9,7 @@ from scipy.misc import comb
 from numpy.polynomial import Polynomial as P
 
 def zernike_coeff(n, m):
+    """Coefficients of Zernike polynomial n,m"""
 
     m = abs(m)
 
@@ -33,6 +34,7 @@ def zernike_coeff(n, m):
 
 
 def zernike_pol(n, m):
+    """Zernike polynomial n,m"""
 
     coeff = zernike_coeff(n, m)
     return P(coeff)

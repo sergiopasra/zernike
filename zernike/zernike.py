@@ -34,7 +34,9 @@ class ZernikePol(object):
         comp = 1 - 2 * rho * rho
         return self.sign * rho**self.m * self.jacobi_pol(comp)
 
+
 def eval_zernike_R(n, m, rho):
+    """Return the value of the radial Zernike polynomial"""
     # n>=m
     # m>=0
 
@@ -49,7 +51,9 @@ def eval_zernike_R(n, m, rho):
     # jacobi form
     return (-1)**n_jacobi * rho**m * eval_jacobi(n_jacobi, m, 0, comp)
 
+
 def eval_zernike(n, m, rho, phi):
+    """Return the value of the Zernike polynomial"""
 
     if m < 0:
         return eval_zernike_R(n, -m, rho) * numpy.sin(-m * phi)
